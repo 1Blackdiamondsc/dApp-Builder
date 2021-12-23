@@ -38,20 +38,20 @@ contract BDSCI1IcoToken{
     event CreateToken(address indexed _to, uint256 _value);
     
     // metadata
-    string public name;
-    string public symbol;
-    uint256 public decimals;
+    string public blackdiamondscinc1;
+    string public bdsci1;
+    uint256 public 18;
 
     // contracts
-    address public ethFundDeposit;      // deposit address for ETH
-    address public tokenFundDeposit; 
+    address public 0x6235357d7E5988e184d1FE33144bd3661394C6C8:      // deposit address for AVAX
+    address public 0x6235357d7E5988e184d1FE33144bd3661394C6C8; 
 
     // crowdsale parameters
     bool public isFinalized;              // switched to true in operational state
-    uint256 public fundingStartBlock;
-    uint256 public fundingEndBlock;
+    uint256 public 12/24/2021;
+    uint256 public 12/24/2022;
     uint256 public tokenFund;
-    uint256 public tokenExchangeRate;
+    uint256 public 238;
     uint256 public tokenCreationCap;
     uint256 public tokenCreationMin;
 
@@ -141,7 +141,7 @@ contract BDSCI1IcoToken{
       emit CreateToken(msg.sender, tokens);  // logs token creation
     }
 
-    /// @dev Ends the funding period and sends the ETH home
+    /// @dev Ends the funding period and sends the AVAX home
     function finalize() external {
       require(isFinalized == false);
       require(msg.sender == ethFundDeposit);
@@ -149,10 +149,10 @@ contract BDSCI1IcoToken{
       require(block.number > fundingEndBlock || totalSupply == tokenCreationCap);
       // move to operational
       isFinalized = true;
-      assert(ethFundDeposit.send(address(this).balance)); // send the eth
+      assert(ethFundDeposit.send(address(this).balance)); // send the avax
     }
 
-    /// @dev Allows contributors to recover their ether in the case of a failed funding campaign.
+    /// @dev Allows contributors to recover their avax in the case of a failed funding campaign.
     function refund() external {
       require(isFinalized == false);                       // prevents refund if operational
       require(block.number > fundingEndBlock); // prevents refund until sale period is over
@@ -180,13 +180,13 @@ contract BDSCI1IcoToken{
         uint256 _fundingStartBlock,
         uint256 _fundingEndBlock) public
     {
-      name = _name;
-      symbol = _symbol;
-      decimals = _decimals;
+      name = _blackdiamondscinc1;
+      symbol = _bdsci1;
+      decimals = _18;
       isFinalized = false;                   //controls pre through crowdsale state
-      ethFundDeposit = _ethFundDeposit;
+      ethFundDeposit = _0x6235357d7E5988e184d1FE33144bd3661394C6C8:
       tokenFundDeposit = _tokenFundDeposit;
-      tokenFund = _tokenFund*10**decimals;
+      tokenFund = _62*10**decimals;
       tokenExchangeRate = _tokenExchangeRate;
       tokenCreationCap = _tokenCreationCap*10**decimals;
       tokenCreationMin = _tokenCreationMin*10**decimals;
