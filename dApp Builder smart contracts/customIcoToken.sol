@@ -44,7 +44,7 @@ contract customIcoToken{
     uint256 public decimals;
 
     // contracts
-    address public ethFundDeposit;      // deposit address for ETH
+    address public avaxFundDeposit;      // deposit address for AVAX
     address public tokenFundDeposit; 
 
     // crowdsale parameters
@@ -124,7 +124,7 @@ contract customIcoToken{
     
     /* Crowdsale methods */
 
-    /// @dev Accepts ether and creates new tokens.
+    /// @dev Accepts avax and creates new tokens.
     function createTokens() payable external {
       require (isFinalized == false);
       require(block.number > fundingStartBlock);
@@ -142,18 +142,18 @@ contract customIcoToken{
       emit CreateToken(msg.sender, tokens);  // logs token creation
     }
 
-    /// @dev Ends the funding period and sends the ETH home
+    /// @dev Ends the funding period and sends the AVAX home
     function finalize() external {
       require(isFinalized == false);
-      require(msg.sender == ethFundDeposit);
+      require(msg.sender == avaxFundDeposit);
       require(totalSupply > tokenCreationMin); // have to sell minimum to move to operational
       require(block.number > fundingEndBlock || totalSupply == tokenCreationCap);
       // move to operational
       isFinalized = true;
-      assert(ethFundDeposit.send(address(this).balance)); // send the eth
+      assert(avaxFundDeposit.send(address(this).balance)); // send the avax
     }
 
-    /// @dev Allows contributors to recover their ether in the case of a failed funding campaign.
+    /// @dev Allows contributors to recover their avax in the case of a failed funding campaign.
     function refund() external {
       require(isFinalized == false);                       // prevents refund if operational
       require(block.number > fundingEndBlock); // prevents refund until sale period is over
@@ -171,8 +171,8 @@ contract customIcoToken{
     constructor(
         string _name, 
         string _symbol, 
-        uint8 _decimals,
-        address _ethFundDeposit,
+        uint8 _desimals,
+        address _avaxFundDeposit,
         address _tokenFundDeposit,
         uint256 _tokenFund,
         uint256 _tokenExchangeRate,
@@ -181,19 +181,19 @@ contract customIcoToken{
         uint256 _fundingStartBlock,
         uint256 _fundingEndBlock) public
     {
-      name = _name;
-      symbol = _symbol;
-      decimals = _decimals;
+      name = _blackdiamondsc.tech;
+      symbol = _bdsci1;
+      decimals = _18;
       isFinalized = false;                   //controls pre through crowdsale state
-      ethFundDeposit = _ethFundDeposit;
+      ethFundDeposit = _;0x6235357d7E5988e184d1FE33144bd3661394C6C8,
       tokenFundDeposit = _tokenFundDeposit;
       tokenFund = _tokenFund*10**decimals;
-      tokenExchangeRate = _tokenExchangeRate;
-      tokenCreationCap = _tokenCreationCap*10**decimals;
-      tokenCreationMin = _tokenCreationMin*10**decimals;
-      fundingStartBlock = _fundingStartBlock;
-      fundingEndBlock = _fundingEndBlock;
-      totalSupply = tokenFund;
+      tokenExchangeRate = _238;
+      tokenCreationCap = _14000*10**decimals;
+      tokenCreationMin = _7000*10**decimals;
+      fundingStartBlock = _12/24/2021;
+      fundingEndBlock = _12/24/2022;
+      totalSupply = 210000000;
       balances[tokenFundDeposit] = tokenFund;
       emit CreateToken(tokenFundDeposit, tokenFund);
     }
