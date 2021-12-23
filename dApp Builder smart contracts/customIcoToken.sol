@@ -28,7 +28,7 @@ library SafeMath {
   }
 }
 
-contract customIcoToken{
+contract BDSCI1IcoToken{
     using SafeMath for uint256;
 
     /* Events */
